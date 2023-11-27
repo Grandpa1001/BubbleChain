@@ -1,9 +1,16 @@
 import React from 'react'
 import logo from './../logo.svg';
 import '../Login.css';
+import { useNavigate } from 'react-router-dom';
+import {Button} from '@mui/material';
+import { logOut} from '../service/firebase';
+
 
 
 const App = () => {
+    const navigate = useNavigate();
+
+
   return (
     <div className="App">
     <header className="App-header">
@@ -20,8 +27,24 @@ const App = () => {
        Grandpa1001
       </a>
     </header>
+    <Button 
+              onClick={logOutProfile}
+              variant="contained"
+              margin="normal"
+              style={{ marginBottom: '30px' }}>
+                Logout
+            </Button>
   </div>
   )
+
+  function logOutProfile(){
+    logOut();
+    navigate('/');
+}
 }
 
+
+
+
 export default App
+

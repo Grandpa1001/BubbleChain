@@ -1,7 +1,8 @@
-
-import '../Login.css';
 import React, {useState, useEffect} from 'react';
+import {Button, TextField,Box} from '@mui/material';
+import {AccountCircle, Lock, Terminal} from '@mui/icons-material';
 import { auth, createAccount, loginAccount } from '../service/firebase';
+import { useNavigate } from 'react-router-dom';
 
 let user = null;
 
@@ -14,13 +15,14 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loginError, setLoginError] = useState('')
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(userParam => {
             if (userParam) {
                 console.log("Zalogowany "+ userParam.email)
-                //navigation.navigate("Home");
                 user = userParam;
+                navigate('/app');
             }
         })
     return unsubscribe
@@ -44,15 +46,50 @@ function Login() {
   };
 
   return (
-    <div className="App">
-          <header className="App-header">
-          <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-          <input type="password" placeholder="Hasło" onChange={(e) => setPassword(e.target.value)} />
-          <button onClick={handleSignUp}>Zarejestruj</button>
-          <button onClick={handleLogin}>Zaloguj</button>
-          <div>{loginError}</div>
-          </header>
-   </div>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        height="100vh">
+           <Terminal sx={{ color: 'action.active', fontSize: 50}} />
+           <div>BubbleChain</div>
+            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <AccountCircle sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField 
+              id="login" 
+              label="Login email" 
+              variant="standard" 
+              type="email" 
+              placeholder="rofl@rolo.eth" 
+              onChange={(e) => setEmail(e.target.value)}/>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+              <Lock sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+              <TextField 
+              id="password" 
+              label="Password" 
+              variant="standard" 
+              type="password" 
+              placeholder="Type secret password" 
+              onChange={(e) => setPassword(e.target.value)}/>
+            </Box>
+            <Button 
+              onClick={handleLogin} 
+              variant="contained"
+              margin="normal"
+              style={{ marginTop: '20px' }}>
+                Login
+            </Button>
+            <div>{loginError}</div>
+            <Button 
+              onClick={handleSignUp} 
+              variant="outlined" 
+              margin="normal"
+              style={{ marginTop: '20px' }}>
+                Register
+              </Button>
+      </Box>
   );
 }
 

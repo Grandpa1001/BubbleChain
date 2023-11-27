@@ -21,7 +21,6 @@ function logOut(){
   signOut(auth).then(() => {
     // Sign-out successful.
     console.log("poprawne wylogowanie");
-
   }).catch((error) => {
     // An error happened.
   });
