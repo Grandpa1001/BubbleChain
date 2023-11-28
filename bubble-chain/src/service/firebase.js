@@ -82,7 +82,7 @@ function loginAccount(email, password, errorCallback){
 const database = getDatabase();
 const recordsRef = ref(database, 'dziennik'); // Zastąp 'nazwaKolekcji' nazwą właściwej kolekcji w bazie danych
 
-// Metoda do dodawania rekordu do bazy danych
+// Metoda do dodawania rekordu do bazy danych    Na TEN MOMENT BRAK FUNCJONALNOSCI
 export function addRecordToFirebase(header, description, date) {
   // Pobierz aktualnie zalogowanego użytkownika
   const user = auth.currentUser;

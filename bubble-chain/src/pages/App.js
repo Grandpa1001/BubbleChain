@@ -3,7 +3,8 @@ import logo from './../logo.svg';
 import '../Login.css';
 import { useNavigate } from 'react-router-dom';
 import {Button} from '@mui/material';
-import { logOut} from '../service/firebase';
+import { logOut } from '../service/firebase';
+
 
 
 

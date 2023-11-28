@@ -5,12 +5,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import App from './pages/App';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
     <Routes>
-      <Route path="/app" element={<App />} />
       <Route path="/" element={<Login />} />
+      <Route path="/app" element={<App />} />
     </Routes>
   </Router>
 );
